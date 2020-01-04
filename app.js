@@ -6,6 +6,14 @@ const router = require("./routers/index")
 
 const app = express()
 
+let WhitList = ['http://127.0.0.1:5500']//允许那些可以访问
+app.use(function (req, res, next) { //跨域问题
+    let origin = req.headers.origin
+    if (WhitList.includes(origin)) {
+        res.setHeader("Access-Control-Allow-Origin", origin)//设置源  
+    }
+    next()
+})
 
 // app.get('/', (req, res) => {
 //     console.dir(req)
