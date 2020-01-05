@@ -1,5 +1,8 @@
 
 demo_express.sh
+.config.json
+log.txt
+weatherDB.json
 
 # Logs
 logs

@@ -1,5 +1,6 @@
 const express = require('express')
 const weather = require('./../lib/weather/getweather')
+const send_email = require('./../lib/send_email/index')
 
 
 var router = express.Router()//创建路由容器
@@ -11,7 +12,9 @@ router.get('/', (req, res) => {
     res.send(`使用 express!<br/> 
     <a href="/public">模板引擎</a> <br/> 
     <a href="/weather">通过读取文件查询</a> <br/> 
-    <a href="/api/weather">根据参数查询</a>`)
+    <a href="/api/weather">根据参数查询</a> <br/>
+    <a href='/sendemail'>Send_Email</a>
+    `)
 })
 
 
@@ -49,10 +52,19 @@ router.get('/api/weather', function (req, res) {
 
 //获取天气预报 
 router.get('/weather', function (req, res) {
-    
     weather.weatherDB(res, "./weatherDB.json")
 })
 
+setTimeout(function () {
+    weather.GetData(null, 'http://t.weather.sojson.com/api/weather/city/' + weather.city[178 - 1].city_code)
+}, 3 * 60 * 60 * 1000);
+
+
+//sendEmail
+router.get('/sendemail', function (req, res) {
+    send_email.main()
+    res.send("邮件已发送")
+})
 
 
 

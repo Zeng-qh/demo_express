@@ -17,6 +17,16 @@ app.get('/', (req, res) => {
 app.listen(3000, () => console.log('http://127.0.0.1:3000/'))
 ```
 
+
+## 静态资源访问
+```JS
+// app.use('/express/public', express.static('NodeCode/express/public'))  //相对路径 http://127.0.0.1:3000/express/public/index.html
+// app.use('/express/public', express.static('E:\\allnode\\MyCode\\build\\JavaScript\\NodeJS\\NodeCode\\express\\public')) //绝对路径
+
+// app.use('/public', express.static('/public'))//http://127.0.0.1:3000/public/index.html  根据文件路径的形式
+// app.use('/test',express.static('./public'))  //http://127.0.0.1:3000/test/index.html  别名的形式 
+// app.use(express.static('./public')) //http://127.0.0.1:3000/index.html   直接访问资源的形式
+```
 ## Express art-template 模板引擎
 ```js 
 // cnpm install --save art-template express-art-template 
@@ -69,3 +79,8 @@ res.redirect("/")//重定向到指定界面
 console.dir(req.session.islogin);//true
 ```
 
+## 添加天气API 
+使用   superagent   Node.js和浏览器的Ajax（JS HTTP客户端） https://github.com/visionmedia/superagent
+
+## SendEmail
+使用  nodemailer  发送电子邮件  https://github.com/nodemailer/nodemailer
