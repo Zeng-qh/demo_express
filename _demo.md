@@ -84,3 +84,14 @@ console.dir(req.session.islogin);//true
 
 ## SendEmail
 使用  nodemailer  发送电子邮件  https://github.com/nodemailer/nodemailer
+
+## 记录 ip
+``` js
+// 第一段判断是否有反向代理IP(头信息：x-forwarded-for)，在判断connection的远程IP，以及后端的socket的IP。
+function getClientIp(req) {
+    return req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
+};
+```

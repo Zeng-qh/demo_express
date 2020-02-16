@@ -6,12 +6,17 @@ const router = require("./routers/index")
 
 const app = express()
 
-let WhitList = ['http://127.0.0.1:5500']//允许那些可以访问
+let WhitList = ['http://127.0.0.1:5500','http://localhost:8080/']//允许那些可以访问
 app.use(function (req, res, next) { //跨域问题
     let origin = req.headers.origin
     if (WhitList.includes(origin)) {
         res.setHeader("Access-Control-Allow-Origin", origin)//设置源  
     }
+    // res.setHeader("Access-Control-Allow-Origin", '*')//设置源 
+    // res.setHeader("Access-Control-Allow-Methods", "*");//允许访问的方式
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type:application/json;");
+    // res.header("Access-Control-Allow-Headers", "Content-Type");
+    // res.header("Content-Type", "application/json;charset=utf-8");
     next()
 })
 
