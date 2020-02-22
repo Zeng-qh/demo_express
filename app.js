@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
-
+const compression=require('compression') // 开启gzip
 const router = require("./routers/index")
 
 const app = express()
@@ -25,8 +25,8 @@ app.use(function (req, res, next) { //跨域问题
 //     res.send('使用 express!')
 // })
 
-
-app.use("./public", express.static("./public"))
+app.use(compression())
+app.use("/public", express.static("./public")) // http://127.0.0.1:3000/public/static/city.json
 
 //静态资源 访问
 // app.use('/express/public', express.static('NodeCode/express/public'))  //相对路径 http://127.0.0.1:3000/express/public/index.html

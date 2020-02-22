@@ -95,3 +95,10 @@ function getClientIp(req) {
         req.connection.socket.remoteAddress;
 };
 ```
+
+## 开启gzip
+
+```js
+const compression=require('compression') // 开启gzip
+app.use(compression())  //在静态资源之前
+```
